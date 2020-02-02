@@ -4,23 +4,23 @@
   "Returns the result of x/y unless y is 0. Returns nil when y is 0"
   {:level        :easy
    :use          '[when-not zero?]
-   :implemented? false}
-  [x y])
+   :implemented? true}
+  [x y] (when-not (zero? y) (/ x y)))
 
 (defn informative-divide
   "Returns the result of x/y unless y is 0. Returns :infinite when y is 0"
   {:level        :easy
    :use          '[if-not zero?]
-   :implemented? false}
-  [x y])
+   :implemented? true}
+  [x y] (if-not (zero? y) (/ x y) :infinite))
 
 (defn harishchandra
   "Only returns truthy values as themselves.
   Falsy values(false and nil) return nil"
   {:level        :easy
    :use          '[when-let]
-   :implemented? false}
-  [x])
+   :implemented? true}
+  [x] (when-let [x x] x))
 
 (defn yudishtira
   "Only returns truthy values as themselves.
@@ -28,7 +28,7 @@
   {:level        :easy
    :use          '[if-let]
    :implemented? false}
-  [x])
+  [x] (if-let [x x] x :ashwathama))
 
 (defn duplicate-first
   "Returns coll with the first element duplicated.
@@ -37,7 +37,7 @@
    :use          '[when-first concat]
    :alternates   '[empty? seq? conj into]
    :implemented? false}
-  [coll])
+  [coll] (when-first [first-value coll] (concat [first-value] coll)))
 
 (defn five-point-someone
   "Returns :chetan-bhagat if y is 5.
@@ -47,7 +47,11 @@
   {:level        :easy
    :use          '[cond]
    :implemented? false}
-  [x y])
+  [x y] (cond
+          (= y 5) :chetan-bhagat
+          (= x 5) :satan-bhagat
+          (> x y) :greece
+          :else :universe))
 
 (defn conditions-apply
   "Given a collection of any length, returns:
@@ -95,7 +99,15 @@
   {:level        :easy
    :use          '[case]
    :implemented? false}
-  [zero-like-value])
+  [zero-like-value] (case zero-like-value
+                      (0) :zero
+                      ([]) :empty
+                      (`()) :empty
+                      (#{}) :empty-set
+                      ({}) :empty-map
+                      ("") :empty-string
+                      :not-zero
+                      ))
 
 (defn zero-separated-palindrome
   "Given a sequence of numbers, increment the list
