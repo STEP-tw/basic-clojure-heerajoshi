@@ -117,4 +117,6 @@
   {:level :easy
    :use '[as-> reverse]
    :implemented? false}
-  [coll])
+  [coll] (as-> coll x
+               (map inc x)
+               (concat (reverse x) (conj x 0))))

@@ -57,3 +57,7 @@
     (is (nil? (duplicate-first []))))
   (testing "when collection is truthy"
     (is (= [1 1 2 3] (duplicate-first [1 2 3])))))
+
+(deftest zero-separated-palindrome-test
+  (testing "given a list create zero separated palindrome"
+    (is (= [4 3 2 0 2 3 4] (zero-separated-palindrome [1 2 3])))))
