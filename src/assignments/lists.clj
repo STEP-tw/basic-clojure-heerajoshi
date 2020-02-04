@@ -8,7 +8,11 @@
    :use          '[loop recur]
    :dont-use     '[map]
    :implemented? false}
-  [f & colls])
+  [f  colls] (loop [result []
+                    l colls]
+               (if (empty? l)
+                 result
+                 (recur (conj result (f (first l))) (rest l)))))
 
 (defn filter'
   "Implement a non-lazy version of filter that accepts a
@@ -18,7 +22,7 @@
    :use          '[loop recur]
    :dont-use     '[filter]
    :implemented? false}
-  [pred coll])
+  [pred coll] ())
 
 (defn reduce'
   "Implement your own multi-arity version of reduce
