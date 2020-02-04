@@ -27,7 +27,7 @@
   Falsy values(false and nil) return :ashwathama"
   {:level        :easy
    :use          '[if-let]
-   :implemented? false}
+   :implemented? true}
   [x] (if-let [x x] x :ashwathama))
 
 (defn duplicate-first
@@ -36,7 +36,7 @@
   {:level        :easy
    :use          '[when-first concat]
    :alternates   '[empty? seq? conj into]
-   :implemented? false}
+   :implemented? true}
   [coll] (when-first [first-value coll] (concat [first-value] coll)))
 
 (defn five-point-someone
@@ -46,12 +46,18 @@
   Otherwise it returns :universe"
   {:level        :easy
    :use          '[cond]
-   :implemented? false}
+   :implemented? true}
   [x y] (cond
           (= y 5) :chetan-bhagat
           (= x 5) :satan-bhagat
           (> x y) :greece
           :else :universe))
+
+(defn is-subset? [subset superset]
+  (-> subset
+      set
+      (filter superset)
+      (= subset)))
 
 (defn conditions-apply
   "Given a collection of any length, returns:
@@ -62,8 +68,12 @@
   {:level        :medium
    :use          '[condp filter]
    :alternates   '[if cond]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll] (condp is-subset? coll
+           [1 3] :wonder-woman
+           [:a :b :c] :durga
+           [[2 3] [4 5]] :cleopatra
+           :tuntun))
 
 (defn repeat-and-truncate
   "Given coll and options to repeat and truncate
@@ -73,7 +83,10 @@
   {:level        :medium
    :use          '[cond->> concat take]
    :implemented? false}
-  [coll rep? truncate? n])
+  [coll rep? truncate? n] (cond->> coll
+                                   rep? (repeat)
+                                   true (flatten)
+                                   truncate? (take n)))
 
 (defn order-in-words
   "Given x, y and z, returns a vector consisting of
@@ -83,8 +96,11 @@
   (order-in-words 2 3 4) => [:z-greater-than-x]"
   {:level        :easy
    :use          '[cond-> conj]
-   :implemented? false}
-  [x y z])
+   :implemented? true}
+  [x y z] (cond-> []
+                  (> x y) (conj :x-greater-than-y)
+                  (> y z) (conj :y-greater-than-z)
+                  (> z x) (conj :z-greater-than-x)))
 
 (defn zero-aliases
   "Given a zero-like value(0,[],(),#{},{}) should
@@ -98,7 +114,7 @@
   \"\"  -> :empty-string"
   {:level        :easy
    :use          '[case]
-   :implemented? false}
+   :implemented? true}
   [zero-like-value] (case zero-like-value
                       (0) :zero
                       ([]) :empty
@@ -116,7 +132,7 @@
   [1 2 3] -> (4 3 2 0 2 3 4)"
   {:level :easy
    :use '[as-> reverse]
-   :implemented? false}
+   :implemented? true}
   [coll] (as-> coll x
                (map inc x)
                (concat (reverse x) (conj x 0))))

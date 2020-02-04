@@ -40,12 +40,16 @@
 (deftest zero-aliases-test
   (testing "when arg is 0"
     (is (= :zero (zero-aliases 0))))
+  
   (testing "when arg is []"
     (is (= :empty (zero-aliases []))))
+
   (testing "when arg is #{}"
     (is (= :empty-set (zero-aliases #{}))))
+
   (testing "when arg is {}"
     (is (= :empty-map (zero-aliases {}))))
+
   (testing "when arg is """
     (is (= :empty-string (zero-aliases ""))))
   (testing "when arg is non zero value"
@@ -61,3 +65,20 @@
 (deftest zero-separated-palindrome-test
   (testing "given a list create zero separated palindrome"
     (is (= [4 3 2 0 2 3 4] (zero-separated-palindrome [1 2 3])))))
+
+(deftest order-in-words-test
+  (testing "x>y>z"
+      (is (= [:x-greater-than-y :y-greater-than-z] (order-in-words 4 3 2))))
+    (testing "z>x>y"
+      (is (= [:x-greater-than-y :z-greater-than-x] (order-in-words 4 3 5))))
+    (testing "z>x"
+      (is (= [:z-greater-than-x] (order-in-words 2 3 4)))))
+
+(deftest repeat-and-truncate-test
+  (testing "repeat the first n element"
+    (is (= [1 2  3 4 1 2] (repeat-and-truncate [1 2 3 4] true true 6)))))
+
+
+(deftest conditions-apply-test
+  (testing "return ::wonder-woman if collection contains 1 and 3"
+    (is (= :wonder-woman (conditions-apply [1 2 3 4 5])))))
