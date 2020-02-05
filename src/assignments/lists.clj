@@ -7,7 +7,7 @@
   {:level        :medium
    :use          '[loop recur]
    :dont-use     '[map]
-   :implemented? false}
+   :implemented? true}
   [f  colls] (loop [result []
                     l colls]
                (if (empty? l)
@@ -21,8 +21,14 @@
   {:level        :easy
    :use          '[loop recur]
    :dont-use     '[filter]
-   :implemented? false}
-  [pred coll] ())
+   :implemented? true}
+  [pred coll] (loop [result []
+                     l coll]
+                (if (empty? l)
+                  result
+                  (recur (if (pred (first l))
+                           (conj result (first l)) result) (rest l)))))
+
 
 (defn reduce'
   "Implement your own multi-arity version of reduce
@@ -31,9 +37,13 @@
   {:level        :medium
    :use          '[loop recur]
    :dont-use     '[reduce]
-   :implemented? false}
-  ([f coll])
-  ([f init coll]))
+   :implemented? true}
+  ([f coll] (loop [result (first coll)
+                   coll (rest coll)]
+              (if (empty? coll)
+                result
+                (recur (f result (first coll)) (rest coll)))))
+  ([f init coll] (reduce' f (cons init coll))))
 
 (defn count'
   "Implement your own version of count that counts the
@@ -41,8 +51,12 @@
   {:level        :easy
    :use          '[loop recur]
    :dont-use     '[count]
-   :implemented? false}
-  ([coll]))
+   :implemented? true}
+  ([coll] (loop [result 0
+                 l coll]
+            (if (empty? l)
+              result
+              (recur (inc result) (rest l))))))
 
 (defn reverse'
   "Implement your own version of reverse that reverses a coll.
@@ -50,8 +64,8 @@
   {:level        :easy
    :use          '[reduce conj seqable? when]
    :dont-use     '[reverse]
-   :implemented? false}
-  ([coll]))
+   :implemented? true}
+  ([coll] (reduce conj '() coll)))
 
 (defn every?'
   "Implement your own version of every? that checks if every
@@ -59,8 +73,12 @@
   {:level        :easy
    :use          '[loop recur and]
    :dont-use     '[every?]
-   :implemented? false}
-  ([pred coll]))
+   :implemented? true}
+  ([pred coll] (loop [coll coll]
+                 (if (empty? coll)
+                   true
+                   (and (pred (first coll))
+                        (recur (rest coll)))))))
 
 (defn some?'
   "Implement your own version of some that checks if at least one
@@ -70,16 +88,20 @@
   {:level        :easy
    :use          '[loop recur or]
    :dont-use     '[some]
-   :implemented? false}
-  ([pred coll]))
+   :implemented? true}
+  ([pred coll] (loop [coll coll]
+                 (if (empty? coll)
+                   false
+                   (or (pred (first coll))
+                        (recur (rest coll)))))))
 
 (defn ascending?
   "Verify if every element is greater than or equal to its predecessor"
   {:level        :easy
    :use          '[partition every? partial apply <=]
    :dont-use     '[loop recur]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll] (apply <= coll))
 
 (defn distinct'
   "Implement your own lazy sequence version of distinct which returns

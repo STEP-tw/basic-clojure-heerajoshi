@@ -82,7 +82,7 @@
   (repeat-and-truncate (range 4) true true 6) => '(0 1 2 3 0 1)"
   {:level        :medium
    :use          '[cond->> concat take]
-   :implemented? false}
+   :implemented? true}
   [coll rep? truncate? n] (cond->> coll
                                    rep? (repeat)
                                    true (flatten)
