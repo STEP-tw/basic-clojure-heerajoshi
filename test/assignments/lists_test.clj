@@ -68,3 +68,7 @@
     (is (= true (palindrome? [1 2 3 3 2 1]))))
   (testing "return false if given collection is not a palindrome"
     (is (= false (palindrome? [1 2 5 6 4 2 1])))))
+
+(deftest muted-thirds-test
+  (testing "return a list that every third element is 0"
+    (is (= [1 2 0 4 5 0] (muted-thirds [1 2 3 4 5 6])))))
