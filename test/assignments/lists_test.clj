@@ -72,3 +72,7 @@
 (deftest muted-thirds-test
   (testing "return a list that every third element is 0"
     (is (= [1 2 0 4 5 0] (muted-thirds [1 2 3 4 5 6])))))
+
+(deftest third-or-fifth-test
+  (testing "return only 3rd and 5th index element"
+    (is (= [1 4 6 7] (third-or-fifth [1 2 3 4 5 6 7 8])))))
