@@ -58,3 +58,7 @@
     (is (= 2 (index-of [1 2 4 5 6] 4))))
   (testing "give -1 if element is not present"
     (is (= -1 (index-of [1 2 4 5 6] 3)))))
+
+(deftest sqr-of-the-first-test
+  (testing "return sqr of first element of a give list"
+    (is (= '(25 25 25 25) (sqr-of-the-first [5 3 4 7])))))
