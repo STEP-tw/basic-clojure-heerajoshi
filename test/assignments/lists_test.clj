@@ -52,3 +52,9 @@
     (is (= true (ascending? [1 3 5 6 8 9]))))
   (testing "it should return false if every element is not greater than or equal to its predecessor"
     (is (= false (ascending? [1 5 4 6 7])))))
+
+(deftest index-of-test
+  (testing "give index of given element"
+    (is (= 2 (index-of [1 2 4 5 6] 4))))
+  (testing "give -1 if element is not present"
+    (is (= -1 (index-of [1 2 4 5 6] 3)))))

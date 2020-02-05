@@ -110,7 +110,7 @@
   {:level        :medium
    :use          '[lazy-seq set conj let :optionally letfn]
    :dont-use     '[loop recur distinct]
-   :implemented? false}
+   :implemented? true}
   [coll])
 
 (defn dedupe'
@@ -268,7 +268,12 @@
    :use          '[loop recur rest]
    :dont-use     '[.indexOf memfn]
    :implemented? false}
-  [coll n])
+  [coll n] (loop [index 0
+                  coll coll]
+             (cond
+               (empty? coll) -1
+               (= n (first coll)) index
+               :else (recur (inc index) (rest coll)))))
 
 (defn validate-sudoku-grid
   "Given a 9 by 9 sudoku grid, validate it."
