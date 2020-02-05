@@ -76,3 +76,7 @@
 (deftest third-or-fifth-test
   (testing "return only 3rd and 5th index element"
     (is (= [1 4 6 7] (third-or-fifth [1 2 3 4 5 6 7 8])))))
+
+(deftest double-up-test
+  (testing "return a list that contains every element twice"
+    (is (= [1 1 2 2 3 3 4 4] (double-up [1 2 3 4])))))
