@@ -80,3 +80,7 @@
 (deftest double-up-test
   (testing "return a list that contains every element twice"
     (is (= [1 1 2 2 3 3 4 4] (double-up [1 2 3 4])))))
+
+(deftest sum-of-adjacent-digits-test
+  (testing "add two adjacent digit in a given list"
+    (is (= [3 5 7] (sum-of-adjacent-digits [1 2 3 4])))))

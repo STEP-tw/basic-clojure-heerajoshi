@@ -130,7 +130,7 @@
    :use          '[map + rest]
    :dont-use     '[loop recur partition]
    :implemented? false}
-  [coll])
+  [coll] (map + coll (rest coll)))
 
 (defn max-three-digit-sequence
   "Given a collection of numbers, find a three digit sequence that
@@ -199,7 +199,7 @@
   each element repeated twice"
   {:level        :easy
    :use          '[mapcat partial repeat :optionally vector]
-   :implemented? false}
+   :implemented? true}
   [coll] (mapcat (partial repeat 2) coll))
 
 (defn third-or-fifth
