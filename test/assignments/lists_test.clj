@@ -46,3 +46,9 @@
     (is (= true (some?' even? [1 5 4 6 9]))))
   (testing "it should return false if all element of a list is false for pred"
     (is (= false (some?' even? [1 5 7 9])))))
+
+(deftest ascending?-test
+  (testing "it should return true if every element is greater than or equal to its predecessor"
+    (is (= true (ascending? [1 3 5 6 8 9]))))
+  (testing "it should return false if every element is not greater than or equal to its predecessor"
+    (is (= false (ascending? [1 5 4 6 7])))))
