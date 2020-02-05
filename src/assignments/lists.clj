@@ -228,7 +228,7 @@
    :use          '[iterate mapv partial vector drop first ->>]
    :dont-use     '[for loop recur reduce]
    :implemented? false}
-  [coll nesting-factor])
+  [coll nesting-factor] )
 
 (defn split-comb
   "Given a collection, return a new sequence where the first
@@ -258,7 +258,11 @@
    :use          '[empty? loop recur butlast rest]
    :dont-use     '[reverse]
    :implemented? false}
-  [coll] )
+  [coll]  (loop [coll coll]
+            (cond
+              (empty? coll) true
+              (not= (first coll) (last coll)) false
+              :else (recur (rest (butlast coll))))))
 
 (defn index-of
   "index-of takes a sequence and an element and finds the index
