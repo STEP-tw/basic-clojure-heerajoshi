@@ -110,7 +110,7 @@
   {:level        :medium
    :use          '[lazy-seq set conj let :optionally letfn]
    :dont-use     '[loop recur distinct]
-   :implemented? true}
+   :implemented? false}
   [coll])
 
 (defn dedupe'
@@ -129,7 +129,7 @@
   {:level        :medium
    :use          '[map + rest]
    :dont-use     '[loop recur partition]
-   :implemented? false}
+   :implemented? true}
   [coll] (map + coll (rest coll)))
 
 (defn max-three-digit-sequence
@@ -160,8 +160,9 @@
   {:level        :easy
    :use          '[remove set]
    :dont-use     '[loop recur if]
-   :implemented? false}
-  [coll1 coll2])
+   :implemented? true}
+  [coll1 coll2]
+  (remove (into #{} coll1) (into #{} coll2)))
 
 (defn union
   "Given two collections, returns a new collection with elements from the second
@@ -170,8 +171,8 @@
   if elements repeat."
   {:level        :easy
    :use          '[remove into set ->>]
-   :implemented? false}
-  [coll1 coll2])
+   :implemented? true}
+  [coll1 coll2] (into coll1 (remove (set coll1) coll2)))
 
 ;; points-around-origin is a def not a defn
 (def

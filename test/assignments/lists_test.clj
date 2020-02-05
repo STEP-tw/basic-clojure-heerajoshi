@@ -84,3 +84,11 @@
 (deftest sum-of-adjacent-digits-test
   (testing "add two adjacent digit in a given list"
     (is (= [3 5 7] (sum-of-adjacent-digits [1 2 3 4])))))
+
+(deftest difference-test
+  (testing "give difference between two list"
+    (is (= `(4 6 5) (difference [1 2 3 9 8] [1 2 3 4 5 6 8])))))
+
+(deftest union-test
+  (testing "give union of two list"
+    (is (= [1 2 3 4 5 5 6 7] (union [1 2 3 4] [1 2 3 4 5 5 6 7])))))
