@@ -92,3 +92,7 @@
 (deftest union-test
   (testing "give union of two list"
     (is (= [1 2 3 4 5 5 6 7] (union [1 2 3 4] [1 2 3 4 5 5 6 7])))))
+
+(deftest cross-product-test
+  (testing "return cross product of two list"
+    (is (= `([1 4] [1 3] [1 5] [2 4] [2 3] [2 5] [3 4]) (cross-product [1 2 3] [4 3 5])))))
