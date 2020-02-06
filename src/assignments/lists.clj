@@ -162,7 +162,7 @@
    :dont-use     '[loop recur if]
    :implemented? true}
   [coll1 coll2]
-  (remove (into #{} coll1) (into #{} coll2)))
+  (remove (set coll1) (set coll2)))
 
 (defn union
   "Given two collections, returns a new collection with elements from the second
